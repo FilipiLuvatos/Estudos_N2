@@ -61,4 +61,11 @@ public class EventoController {
                 .delayElements(Duration.ofSeconds(4));
     }
 
+
+    @GetMapping("/{id}/traduzir/{idioma}")
+    public Mono<String> obterID(@PathVariable Long id,
+                                @PathVariable String idioma){
+        return eventoService.obterTraducao(id, idioma);
+    }
+
 }
