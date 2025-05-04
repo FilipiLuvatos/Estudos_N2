@@ -5,6 +5,7 @@ import br.com.trilha.codechella.domain.EventoDTO;
 import br.com.trilha.codechella.repository.EventoRepository;
 import br.com.trilha.codechella.service.EventoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
@@ -39,6 +40,7 @@ public class EventoController {
     }
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public Mono<EventoDTO> cadastrar(@RequestBody EventoDTO dto){
 
         return eventoService.cadastrar(dto).doOnSuccess(e -> eventoSink.tryEmitNext(e));
